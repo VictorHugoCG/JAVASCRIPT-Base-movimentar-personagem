@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base para movimentar personagem JavaScript</title>
+
+</head>
+
+<style>
+    #dv1{
+        width: 100px;
+        height: 100px;
+        border: 1px solid #000;
+        background-color: #fff;
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+    
+</style>
+
+<script>
+
+        //declaração de variáveis
+        let dx;
+        let dy;
+        let px;
+        let py;
+        let vel;
+        let obj;
+        let tmp;
+
+        //função para iniciar as variáveis e os eventos
+        function inicia()
+        {
+            dx=0;
+            dy=0;
+            px=0;
+            py=0;
+            vel=2;
+            obj=document.getElementById("dv1");
+
+            document.addEventListener("keydown",teclaDw);
+            document.addEventListener("keyup",teclaUp);
+            tmp=setInterval(movimentar,1);//velocidade em milissegundos
+
+
+        };
+
+
+        //função para movimentar ao pressionar a tecla
+        function teclaDw()
+        {
+            let tecla= event.keyCode;
+            
+            //37=esquerda - 38=cima - 39=direita - 40=baixo
+            if(tecla==37)
+            {
+                dx=-1;
+            }
+            else if(tecla==38)
+            {
+                dy=-1;
+            }
+            else if(tecla==39)
+            {
+                dx=+1;
+            }
+            else if(tecla==40)
+            {
+                dy=+1;
+            }
+
+        }
+
+        //função para zerar os valores ao soltar a tecla
+        function teclaUp()
+        {
+            let tecla= event.keyCode;
+            
+            //37=esquerda - 38=cima - 39=direita - 40=baixo
+            if(tecla==37)
+            {
+                dx=0;
+            }
+            else if(tecla==38)
+            {
+                dy=0;
+            }
+            else if(tecla==39)
+            {
+                dx=0;
+            }
+            else if(tecla==40)
+            {
+                dy=0;
+            }
+
+        }
+
+        //funcão para movimentar o elemento de acordo com a tecla pressionada
+        function movimentar()
+        {
+            px+=dx*vel;
+            py+=dy*vel;
+
+            obj.style.left=px+"px";
+            obj.style.top=py+"px";
+        }
+
+        window.addEventListener("load", inicia);
+
+</script>
+
+<body">
+    
+    <div id="dv1">
+
+    </div>
+    
+
+    <script>
+
+        
+        
+    </script>
+
+</body>
+</html>
